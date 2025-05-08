@@ -1,0 +1,138 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Parking Management</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="admin.js"></script>
+</head>
+
+<body>
+    <div class="navbar">
+        <h1>Admin - Parking Management</h1>
+    </div>
+
+    <div class="container">
+        <h2>Parking Slots</h2>
+        <table id="parkingTable">
+            <thead>
+                <tr>
+                    <th>Car Number</th>
+                    <th>Slot Number</th>
+                    <th>Entry Time</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel - Parking System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        button {
+            padding: 6px 12px;
+            background-color: #ff4c4c;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #d93636;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Admin Panel - Parking Slot Management</h2>
+
+    <table id="parkingTable">
+        <thead>
+            <tr>
+                <th>Car Number</th>
+                <th>Slot Number</th>
+                <th>Status</th>
+                <th>Resident</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="parkingBody">
+            <!-- Entries will be loaded dynamically -->
+        </tbody>
+    </table>
+
+    <script>
+        function loadParkingData() {
+            let parkingData = JSON.parse(localStorage.getItem("parkingData")) || [];
+            let tbody = document.getElementById("parkingBody");
+            tbody.innerHTML = "";
+
+            parkingData.forEach((entry, index) => {
+                if (entry.status === "Occupied") {
+                    let tr = document.createElement("tr");
+
+                    tr.innerHTML = `
+            <td>${entry.carNumber}</td>
+            <td>${entry.slotNumber}</td>
+            <td>${entry.status}</td>
+            <td>${entry.isResident ? "Resident" : "Visitor"}</td>
+            <td><button onclick="carExit(${index})">Exit</button></td>
+          `;
+
+                    tbody.appendChild(tr);
+                }
+            });
+        }
+
+        function carExit(index) {
+            let parkingData = JSON.parse(localStorage.getItem("parkingData")) || [];
+            if (parkingData[index]) {
+                parkingData[index].status = "Free";
+                localStorage.setItem("parkingData", JSON.stringify(parkingData));
+                alert(`Car ${parkingData[index].carNumber} has exited. Slot ${parkingData[index].slotNumber} is now free.`);
+                loadParkingData();
+            }
+        }
+
+        // Initial load
+        loadParkingData();
+    </script>
+</body>
+
+</html>

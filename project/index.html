@@ -1,0 +1,105 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track It</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tesseract.js/4.0.2/tesseract.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="navbar">
+        <h1>Track It</h1>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#contact">Contact Us</a>
+        </nav>
+    </div>
+
+    <div id="home" class="container">
+        <h2>Welcome to Track It</h2>
+        <p>Track It is an innovative system that helps in tracking car number plates efficiently.</p>
+    </div>
+
+    <div class="container">
+        <h2>Capture Car Number Plate</h2>
+        <video id="video" autoplay></video>
+        <button class="capture-button" onclick="capturePhoto()">Capture</button>
+        <canvas id="canvas" style="display:none;"></canvas>
+        <h3>Detected Number:</h3>
+        <p class="detected-number" id="detectedNumber">Waiting for capture...</p>
+        <input type="text" id="numberPlate" class="input-field" placeholder="Detected plate number">
+        <button onclick="saveNumber()">Save Number</button>
+        <p class="stored-number" id="storedNumber"></p>
+    </div>
+
+    <div id="contact" class="container">
+        <h2>Contact Us</h2>
+        <p>Email: support@trackit.com</p>
+        <p>Phone: +1234567890</p>
+    </div>
+
+    <script src="script.js">
+
+    </script>
+</body>
+
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parking System</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/tesseract.js/4.0.2/tesseract.min.js"></script>
+    <script defer src="script.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Parking Entry System</h2>
+
+        <div class="video-container">
+            <video id="video" autoplay></video>
+        </div>
+
+        <canvas id="canvas" style="display: none;"></canvas>
+
+        <button class="capture-btn" onclick="capturePhoto()">Capture Photo</button>
+
+        <div class="detected-text">
+            <p>Detected Plate: <span id="detectedNumber">-</span></p>
+            <input type="text" id="numberPlate" placeholder="Enter Plate Manually">
+        </div>
+
+        <button class="proceed-btn" onclick="verifyCar()">Proceed</button>
+
+        <p id="storedNumber"></p>
+    </div>
+    <div id="popupModal" class="modal">
+        <div class="modal-content">
+            <h3>Detected Car Number</h3>
+            <p id="popupCarNumber">-</p>
+            <p>Is this car from the society?</p>
+            <button onclick="grantAccess()">Resident</button>
+            <button onclick="redirectToParking()">Visitor</button>
+        </div>
+    </div>
+    <!-- Popup Modal -->
+    <div id="popupModal"
+        style="display: none; position: fixed; top: 30%; left: 35%; background: white; border: 2px solid #333; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.3); z-index: 999;">
+        <h3>Confirm Car Entry</h3>
+        <p>Car Number: <strong id="popupCarNumber"></strong></p>
+        <button onclick="grantAccess()">Resident</button>
+        <button onclick="redirectToParking()">Visitor</button>
+    </div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visitor Parking</title>
+    <style>
+        .parking-space {
+            width: 60px;
+            height: 60px;
+            margin: 5px;
+            background-color: green;
+            color: white;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .occupied {
+            background-color: red !important;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Visitor Parking Allocation</h1>
+    <h2>Car Number: <span id="carNumber">Loading...</span></h2>
+    <h3>Select a parking space:</h3>
+    <div id="parkingLot"></div>
+
+    <script src="parking.js"></script>
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visitor Parking</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <p id="Total-parking">Total parking: <span id="count-parking">0</span></p>
+        <h2>Visitor Parking Allocation</h2>
+        <div id="parking-spots"></div>
+
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            let parkingSpots = document.getElementById("parking-spots");
+            let carNumber = document.getElementById("Car-Number")
+            let parkingCount = document.getElementById("count-parking")
+
+            for (let i = 1; i <= 30; i++) {
+                let button = document.createElement("button");
+
+                button.textContent = "Spot " + i;
+                button.classList.add("spot");
+                button.onclick = () => {
+                    button.style.backgroundColor = "red";
+                    button.disabled = true;
+                    alert("Spot " + i + " allocated!");
+
+
+                };
+                parkingSpots.appendChild(button);
+            }
+        });
+    </script>
+
+</body>
+
+</html>
